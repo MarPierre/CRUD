@@ -3,28 +3,25 @@
 session_start();
 
 if($_POST){
-    if(isset($_POST['produit']) && !empty($_POST['produit'])
-    && isset($_POST['prix']) && !empty($_POST['prix'])
-    && isset($_POST['nombre']) && !empty($_POST['nombre'])){
+    if(isset($_POST['libelle']) && !empty($_POST['libelle'])
+        && isset($_POST['id']) && !empty($_POST['id'])){
         // On inclut la connexion à la base
         require_once('connect.php');
 
         // On nettoie les données envoyées
-        $produit = strip_tags($_POST['produit']);
-        $prix = strip_tags($_POST['prix']);
-        $nombre = strip_tags($_POST['nombre']);
+        $libelle = strip_tags($_POST['libelle']);
+        $id = strip_tags($_POST['id']);
 
-        $sql = 'INSERT INTO `liste` (`produit`, `prix`, `nombre`) VALUES (:produit, :prix, :nombre);';
+        $sql = 'INSERT INTO `Etat` (`libelle`,`id`) VALUES (:libelle, :id);';
 
         $query = $db->prepare($sql);
 
-        $query->bindValue(':produit', $produit, PDO::PARAM_STR);
-        $query->bindValue(':prix', $prix, PDO::PARAM_STR);
-        $query->bindValue(':nombre', $nombre, PDO::PARAM_INT);
+        $query->bindValue(':libelle', $libelle, PDO::PARAM_STR);
+        $query->bindValue(':id', $id, PDO::PARAM_STR);
 
         $query->execute();
 
-        $_SESSION['message'] = "Produit ajouté";
+        $_SESSION['message'] = "libelle ajouté";
         require_once('close.php');
 
         header('Location: index.php');
@@ -39,7 +36,7 @@ if($_POST){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un produit</title>
+    <title>Ajouter un libelle</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
@@ -55,20 +52,14 @@ if($_POST){
                         $_SESSION['erreur'] = "";
                     }
                 ?>
-                <h1>Ajouter un produit</h1>
+                <h1>Ajouter un libelle</h1>
                 <form method="post">
                     <div class="form-group">
-                        <label for="produit">Produit</label>
-                        <input type="text" id="produit" name="produit" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="prix">Prix</label>
-                        <input type="text" id="prix" name="prix" class="form-control">
-
-                    </div>
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="number" id="nombre" name="nombre" class="form-control">
+                        <label for="libelle">libelle</label>
+                        <input type="text" id="libelle" name="libelle" class="form-control">
+                        <div class="form-group">
+                        <label for="prix">id</label>
+                        <input type="text" id="id" name="id" class="form-control">
                     </div>
                     <button class="btn btn-primary">Envoyer</button>
                 </form>
