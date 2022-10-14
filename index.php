@@ -18,7 +18,7 @@ require_once('close.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des libelle</title>
+    <title>Listes complets des libelle</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
@@ -42,7 +42,7 @@ require_once('close.php');
                         $_SESSION['message'] = "";
                     }
                 ?>
-                <h1>Liste des libelle</h1>
+                <h1>Ajouter et modifier les libelles de la table Etat</h1>
                 <table class="table">
                     <thead>
                         <th>id</th>
@@ -56,7 +56,7 @@ require_once('close.php');
                             <tr>
                                 <td><?= $libelle['id'] ?></td>
                                 <td><?= $libelle['libelle'] ?></td>
-                                <td><a href="details.php?id=<?= $libelle['id'] ?>">Voir</a> <a href="edit.php?id=<?= $libelle['id'] ?>">Modifier</a> <a href="delete.php?id=<?= $libelle['id'] ?>">Supprimer</a></td>
+                                <td><a href="edit.php?id=<?= $libelle['id'] ?>">Modifier</a> </td>
                             </tr>
                         <?php
                         }
@@ -64,6 +64,8 @@ require_once('close.php');
                     </tbody>
                 </table>
                 <a href="add.php" class="btn btn-primary">Ajouter un libelle</a>
+                <a href="fiche.php" class="btn btn-primary">Ajouter une fiche</a>
+
             </section>
         </div>
     </main>
